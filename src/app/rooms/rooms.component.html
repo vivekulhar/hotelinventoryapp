@@ -1,7 +1,12 @@
 <h1>Welcome to {{ hotelName }}</h1>
 <div [hidden]="hideRooms">
   Number of rooms:
-  <div [innerText]="numberOfRooms"></div>
+  <!-- <div *ngIf="rooms.availableRooms > 0" 
+    [ngStyle]="{color:'green'}"
+    [innerText]="numberOfRooms"></div>
+</div> -->
+<div [ngStyle]="{'color':rooms.availableRooms?'green':'red'}"
+    [innerText]="numberOfRooms"></div>
 </div>
 <!-- Property Binding -->
 <!-- null collision operator ?? -->
@@ -22,7 +27,7 @@ an error if the property is null or undefined. -->
       <th>Room Amenities</th>
       <th>Checkin Time</th>
     </tr>
-    <tr *ngFor="let room of roomList; let i=index; let e=even; let o=odd">
+    <tr [ngClass]="e?'even':'odd'" *ngFor="let room of roomList; let i=index; let e=even; let o=odd">
       <td>{{i}}</td>
         <td>{{e?"Even":"Odd"}}</td>
         <td>{{ room.roomNumber }}</td>
