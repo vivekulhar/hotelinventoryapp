@@ -12,9 +12,9 @@ export class RoomsComponent {
   numberOfRooms = 10;
   hideRooms = false;
   rooms:Room={
-    totalRooms:20,
-    availableRooms:0,
-    bookedRooms:5
+    // totalRooms:20,
+    // availableRooms:0,
+    // bookedRooms:5
   }
 
   toggle(){

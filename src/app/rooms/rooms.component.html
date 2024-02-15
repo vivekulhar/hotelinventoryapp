@@ -4,9 +4,13 @@
     <div [innerText]="numberOfRooms"></div>
 </div>
 <!-- Property Binding -->
+<!-- null collision operator ?? -->
+<!-- optional chaining ?. allows to access
+properties of an object without causing
+an error if the property is null or undefined. -->
+{{ rooms?.availableRooms ?? 'No rooms'}}
 
-
-<div *ngIf="rooms.availableRooms > 0">
+<div *ngIf="rooms?.availableRooms">
     Rooms List
 </div>
 
