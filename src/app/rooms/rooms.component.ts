@@ -13,7 +13,7 @@ export class RoomsComponent {
   hideRooms = false;
   rooms:Room={
     totalRooms:20,
-    availableRooms:10,
+    availableRooms:0,
     bookedRooms:5
   }
 
