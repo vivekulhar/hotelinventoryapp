@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Room } from './rooms';
 import { RoomList } from './rooms';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from '../header/header.component';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
