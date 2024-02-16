@@ -11,7 +11,7 @@ export class RoomsComponent {
   hotelName = "Hilton Hotel";
   numberOfRooms = 10;
   hideRooms = false;
-
+  title = 'Room List';
   selectedRoom!:RoomList;
 
   rooms:Room={
@@ -58,9 +58,29 @@ ngOnInit():void{
 
   toggle(){
     this.hideRooms = !this.hideRooms;
+    this.title = "Rooms List";
   }
 
   selectRoom(room:RoomList){
     this.selectedRoom=room;
   }
+
+  addRoom(){
+    const room:RoomList={
+      roomNumber:4324,
+    roomType : 'Deluxe Room',
+    amenities:'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+    price:500,
+    photos:'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
+    checkinTime:new Date('11-Nov-2023'),
+    checkoutTime: new Date('12-Nov-2023'),
+    rating:4.5
+    };
+    // this.roomList.push(room);
+
+    // create a new instance here,
+    // the property should be immutable
+    this.roomList = [...this.roomList,room];
+  }
+
 }

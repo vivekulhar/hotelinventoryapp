@@ -25,8 +25,12 @@ an error if the property is null or undefined. -->
 
 </div>
 
+<div>
+  <button (click)="addRoom()">Add Room</button>
+</div>
+
 <div *ngIf="rooms.availableRooms > 0">
-  <hinv-rooms-list [rooms]="roomList"
+  <hinv-rooms-list [rooms]="roomList" [title]="title"
   (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
  
