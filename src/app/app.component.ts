@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, OnInit, AfterViewInit } from '@angular/core';
+import { RoomsComponent } from './rooms/rooms.component';
 
 @Component({
   selector: 'hinv-root',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   // template:'<h1>Hello World</h1>',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    const componentRef = this.vcr.createComponent(RoomsComponent);
+    componentRef.instance.numberOfRooms=50;
+  }
   title = 'hotelinventoryapp';
-  role = 'Admin';
+  @ViewChild('user',{read:ViewContainerRef}) vcr!:ViewContainerRef;
+
 }
