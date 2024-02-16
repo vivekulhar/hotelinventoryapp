@@ -5,8 +5,10 @@
     [ngStyle]="{color:'green'}"
     [innerText]="numberOfRooms"></div>
 </div> -->
-<div [ngStyle]="{'color':rooms.availableRooms?'green':'red'}"
-    [innerText]="numberOfRooms"></div>
+  <div
+    [ngStyle]="{ color: rooms.availableRooms ? 'green' : 'red' }"
+    [innerText]="numberOfRooms"
+  ></div>
 </div>
 <!-- Property Binding -->
 <!-- null collision operator ?? -->
@@ -15,29 +17,39 @@ properties of an object without causing
 an error if the property is null or undefined. -->
 {{ rooms?.availableRooms ?? "No rooms" }}
 
+<!-- json pipe-->
+<!-- {{roomList | json}} -->
+
 <div *ngIf="rooms.availableRooms > 0">
   Rooms List
   <table>
     <tr>
-        <th>Index</th>
-        <th>Even/Odd</th>
+      <th>Index</th>
+      <th>Even/Odd</th>
       <th>Room Number</th>
       <th>Room Type</th>
       <th>Room Price</th>
       <th>Room Amenities</th>
       <th>Checkin Time</th>
+      <th>Rating</th>
     </tr>
-    <tr [ngClass]="e?'even':'odd'" *ngFor="let room of roomList; let i=index; let e=even; let o=odd">
-      <td>{{i}}</td>
-        <td>{{e?"Even":"Odd"}}</td>
-        <td>{{ room.roomNumber }}</td>
+    <!--slice -- last value is skipped,
+    generally not used, use pagination-->
+    <tr
+      [ngClass]="e ? 'even' : 'odd'"
+      *ngFor="let room of roomList | slice:0:3; let i = index; let e = even; let o = odd"
+    >
+      <td>{{ i | percent}}</td>
+      <td>{{ e ? "Even" : "Odd" }}</td>
+      <td>{{ room.roomNumber }}</td>
       <td>{{ room.roomType }}</td>
-      <td>{{ room.price }}</td>
-      <td>{{ room.amenities }}</td>
-      <td>{{ room.checkinTime }}</td>
+      <td>{{ room.price | currency : "INR" }}</td>
+      <td>{{ room.amenities | titlecase }}</td>
+      <td>{{ room.checkinTime | date : "short" }}</td>
+      <td>{{room.rating|number:'1.1-2':'en-us'}}</td>
     </tr>
   </table>
-</div>
+</div> 
 
 <!-- document.getElementById('numberOfRooms').innerText = numberOfRooms; -->
 
