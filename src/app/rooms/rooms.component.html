@@ -21,34 +21,7 @@ an error if the property is null or undefined. -->
 <!-- {{roomList | json}} -->
 
 <div *ngIf="rooms.availableRooms > 0">
-  Rooms List
-  <table class="table">
-    <tr>
-      <th>Index</th>
-      <th>Even/Odd</th>
-      <th>Room Number</th>
-      <th>Room Type</th>
-      <th>Room Price</th>
-      <th>Room Amenities</th>
-      <th>Checkin Time</th>
-      <th>Rating</th>
-    </tr>
-    <!--slice -- last value is skipped,
-    generally not used, use pagination-->
-    <tr
-      [ngClass]="e ? 'even' : 'odd'"
-      *ngFor="let room of roomList | slice:0:3; let i = index; let e = even; let o = odd"
-    >
-      <td>{{ i | percent}}</td>
-      <td>{{ e ? "Even" : "Odd" }}</td>
-      <td>{{ room.roomNumber }}</td>
-      <td>{{ room.roomType }}</td>
-      <td>{{ room.price | currency : "INR" }}</td>
-      <td>{{ room.amenities | titlecase }}</td>
-      <td>{{ room.checkinTime | date : "short" }}</td>
-      <td>{{room.rating|number:'1.1-2':'en-us'}}</td>
-    </tr>
-  </table>
+  <hinv-rooms-list [rooms]="roomList"></hinv-rooms-list>
 </div> 
 
 <!-- document.getElementById('numberOfRooms').innerText = numberOfRooms; -->
