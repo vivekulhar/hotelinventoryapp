@@ -9,5 +9,10 @@ import { RoomList } from '../rooms';
 export class RoomsListComponent {
   // to get the data
   @Input() rooms:RoomList[]=[];
-  
+  // <> kind of data we want to send back
+  @Output() selectedRoom = new EventEmitter<RoomList>();
+
+  selectRoom(room:RoomList){
+    this.selectedRoom.emit(room);
+  }
 }

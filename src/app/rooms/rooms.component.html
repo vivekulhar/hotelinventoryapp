@@ -20,9 +20,16 @@ an error if the property is null or undefined. -->
 <!-- json pipe-->
 <!-- {{roomList | json}} -->
 
+<div *ngIf="selectedRoom">
+    {{selectedRoom|json}}
+
+</div>
+
 <div *ngIf="rooms.availableRooms > 0">
-  <hinv-rooms-list [rooms]="roomList"></hinv-rooms-list>
-</div> 
+  <hinv-rooms-list [rooms]="roomList"
+  (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
+</div>
+ 
 
 <!-- document.getElementById('numberOfRooms').innerText = numberOfRooms; -->
 

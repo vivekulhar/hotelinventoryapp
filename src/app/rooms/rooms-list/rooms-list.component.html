@@ -1,28 +1,38 @@
 Rooms List
-  <table class="table">
-    <tr>
-      <th>Index</th>
-      <th>Even/Odd</th>
-      <th>Room Number</th>
-      <th>Room Type</th>
-      <th>Room Price</th>
-      <th>Room Amenities</th>
-      <th>Checkin Time</th>
-      <th>Rating</th>
-    </tr>
-    <!--slice -- last value is skipped,
+<table class="table">
+  <tr>
+    <th>Index</th>
+    <th>Even/Odd</th>
+    <th>Room Number</th>
+    <th>Room Type</th>
+    <th>Room Price</th>
+    <th>Room Amenities</th>
+    <th>Checkin Time</th>
+    <th>Rating</th>
+    <th>Select Room</th>
+  </tr>
+  <!--slice -- last value is skipped,
     generally not used, use pagination-->
-    <tr
-      [ngClass]="e ? 'even' : 'odd'"
-      *ngFor="let room of rooms | slice:0:3; let i = index; let e = even; let o = odd"
-    >
-      <td>{{ i | percent}}</td>
-      <td>{{ e ? "Even" : "Odd" }}</td>
-      <td>{{ room.roomNumber }}</td>
-      <td>{{ room.roomType }}</td>
-      <td>{{ room.price | currency : "INR" }}</td>
-      <td>{{ room.amenities | titlecase }}</td>
-      <td>{{ room.checkinTime | date : "short" }}</td>
-      <td>{{room.rating|number:'1.1-2':'en-us'}}</td>
-    </tr>
-  </table>
+  <tr
+    [ngClass]="e ? 'even' : 'odd'"
+    *ngFor="
+      let room of rooms | slice : 0 : 3;
+      let i = index;
+      let e = even;
+      let o = odd
+    "
+  >
+    <td>{{ i | percent }}</td>
+    <td>{{ e ? "Even" : "Odd" }}</td>
+    <td>{{ room.roomNumber }}</td>
+    <td>{{ room.roomType }}</td>
+    <td>{{ room.price | currency : "INR" }}</td>
+    <td>{{ room.amenities | titlecase }}</td>
+    <td>{{ room.checkinTime | date : "short" }}</td>
+    <td>{{ room.rating | number : "1.1-2" : "en-us" }}</td>
+    <td>
+      <button class="btn btn-primary"
+      (click)="selectRoom(room)">Select</button>
+    </td>
+  </tr>
+</table>
