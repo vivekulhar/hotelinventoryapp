@@ -16,7 +16,12 @@ export class RoomsComponent {
     availableRooms:10,
     bookedRooms:5
   }
-  roomList:RoomList[]=[{
+  roomList:RoomList[]=[];
+constructor(){
+
+}
+ngOnInit():void{
+  this.roomList = [{
     roomNumber:1201,
     roomType : 'Deluxe Room',
     amenities:'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
@@ -45,8 +50,8 @@ export class RoomsComponent {
     checkinTime:new Date('11-Nov-2023'),
     checkoutTime: new Date('12-Nov-2023'),
     rating:3.4546
-  } 
-]
+  } ];
+}
 
   toggle(){
     this.hideRooms = !this.hideRooms;
