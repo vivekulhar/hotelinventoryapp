@@ -7,7 +7,7 @@ import { RoomList } from '../rooms';
   styleUrls: ['./rooms-list.component.scss'],
    changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class RoomsListComponent implements OnInit, OnChanges{
+export class RoomsListComponent implements OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     
     console.log(changes);
@@ -15,9 +15,9 @@ export class RoomsListComponent implements OnInit, OnChanges{
       this.title = changes['title'].currentValue.toUpperCase();
     }
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  // ngOnInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
   // to get the data
   @Input() rooms:RoomList[]=[];
   // <> kind of data we want to send back

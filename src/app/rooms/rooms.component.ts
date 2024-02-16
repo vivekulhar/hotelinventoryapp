@@ -1,86 +1,93 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { Room } from './rooms';
 import { RoomList } from './rooms';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.scss']
+  styleUrls: ['./rooms.component.scss'],
 })
-export class RoomsComponent {
-
-  hotelName = "Hilton Hotel";
+export class RoomsComponent implements DoCheck {
+  hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
   hideRooms = false;
   title = 'Room List';
-  selectedRoom!:RoomList;
+  selectedRoom!: RoomList;
 
-  rooms:Room={
-    totalRooms:20,
-    availableRooms:10,
-    bookedRooms:5
+  rooms: Room = {
+    totalRooms: 20,
+    availableRooms: 10,
+    bookedRooms: 5,
+  };
+  roomList: RoomList[] = [];
+  constructor() {}
+
+  ngDoCheck(): void {
+    console.log('on check is called');
   }
-  roomList:RoomList[]=[];
-constructor(){
 
-}
-ngOnInit():void{
-  this.roomList = [{
-    roomNumber:1201,
-    roomType : 'Deluxe Room',
-    amenities:'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
-    price:500,
-    photos:'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
-    checkinTime:new Date('11-Nov-2023'),
-    checkoutTime: new Date('12-Nov-2023'),
-    rating:4.5
-  },
-  {
-    roomNumber:1501,
-    roomType : 'Luxury Room',
-    amenities:'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
-    price:1000,
-    photos:'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
-    checkinTime:new Date('11-Nov-2023'),
-    checkoutTime: new Date('12-Nov-2023'),
-    rating:4.2
-  },
-  {
-    roomNumber:2001,
-    roomType : 'Private Suite',
-    amenities:'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
-    price:1500,
-    photos:'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
-    checkinTime:new Date('11-Nov-2023'),
-    checkoutTime: new Date('12-Nov-2023'),
-    rating:3.4546
-  } ];
-}
+  ngOnInit(): void {
+    this.roomList = [
+      {
+        roomNumber: 1201,
+        roomType: 'Deluxe Room',
+        amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+        price: 500,
+        photos:
+          'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
+        checkinTime: new Date('11-Nov-2023'),
+        checkoutTime: new Date('12-Nov-2023'),
+        rating: 4.5,
+      },
+      {
+        roomNumber: 1501,
+        roomType: 'Luxury Room',
+        amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+        price: 1000,
+        photos:
+          'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
+        checkinTime: new Date('11-Nov-2023'),
+        checkoutTime: new Date('12-Nov-2023'),
+        rating: 4.2,
+      },
+      {
+        roomNumber: 2001,
+        roomType: 'Private Suite',
+        amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+        price: 1500,
+        photos:
+          'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
+        checkinTime: new Date('11-Nov-2023'),
+        checkoutTime: new Date('12-Nov-2023'),
+        rating: 3.4546,
+      },
+    ];
+  }
 
-  toggle(){
+  toggle() {
     this.hideRooms = !this.hideRooms;
-    this.title = "Rooms List";
+    this.title = 'Rooms List';
   }
 
-  selectRoom(room:RoomList){
-    this.selectedRoom=room;
+  selectRoom(room: RoomList) {
+    this.selectedRoom = room;
   }
 
-  addRoom(){
-    const room:RoomList={
-      roomNumber:4324,
-    roomType : 'Deluxe Room',
-    amenities:'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
-    price:500,
-    photos:'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
-    checkinTime:new Date('11-Nov-2023'),
-    checkoutTime: new Date('12-Nov-2023'),
-    rating:4.5
+  addRoom() {
+    const room: RoomList = {
+      roomNumber: 4324,
+      roomType: 'Deluxe Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+      price: 500,
+      photos:
+        'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
+      checkinTime: new Date('11-Nov-2023'),
+      checkoutTime: new Date('12-Nov-2023'),
+      rating: 4.5,
     };
     // this.roomList.push(room);
 
     // create a new instance here,
     // the property should be immutable
-    this.roomList = [...this.roomList,room];
+    this.roomList = [...this.roomList, room];
   }
-
 }
