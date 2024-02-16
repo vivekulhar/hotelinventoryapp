@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Component,
   DoCheck,
+  OnDestroy,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -16,7 +17,7 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./rooms.component.scss'],
 })
 export class RoomsComponent
-  implements DoCheck, AfterViewChecked, AfterViewInit
+  implements DoCheck, AfterViewChecked, AfterViewInit, OnDestroy
 {
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
@@ -39,6 +40,9 @@ export class RoomsComponent
   headerChildrenComponent!: QueryList<HeaderComponent>;
 
   constructor() {}
+  ngOnDestroy(): void {
+    console.log('on destroy is called');
+  }
   ngAfterViewChecked(): void {
     this.headerComponent.title = 'Rooms View';
   }
