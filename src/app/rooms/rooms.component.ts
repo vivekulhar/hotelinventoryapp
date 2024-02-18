@@ -125,6 +125,24 @@ export class RoomsComponent
       this.roomList = data;
     });
   }
+
+  editRoom(){
+    const room: RoomList = {
+      roomNumber: '3',
+      roomType: 'Deluxe Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
+      price: 500,
+      photos:
+        'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600',
+      checkinTime: new Date('11-Nov-2023'),
+      checkoutTime: new Date('12-Nov-2023'),
+      rating: 4.5,
+    };
+
+    this.roomsService.editRoom(room).subscribe((data)=>{
+      this.roomList = data;
+    })
+  };
 }
 // pull the data architecture
 //getData ->addData ->getData
