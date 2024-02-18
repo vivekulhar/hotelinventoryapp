@@ -143,6 +143,12 @@ export class RoomsComponent
       this.roomList = data;
     })
   };
+
+  deleteRoom(){
+    this.roomsService.delete('3').subscribe((data)=>{
+      this.roomList=data;
+    })
+  }
 }
 // pull the data architecture
 //getData ->addData ->getData
