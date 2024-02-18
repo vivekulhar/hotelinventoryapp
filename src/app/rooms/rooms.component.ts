@@ -72,7 +72,9 @@ export class RoomsComponent
   ngOnInit(): void {
     // console.log(this.headerComponent);
 
-    this.roomList = this.roomsService.getRooms();
+    this.roomsService.getRooms().subscribe(rooms=>{
+      this.roomList=rooms;
+    });
   }
 
   toggle() {
@@ -86,7 +88,7 @@ export class RoomsComponent
 
   addRoom() {
     const room: RoomList = {
-      roomNumber: 4324,
+      roomNumber: '4324',
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
       price: 500,
@@ -103,3 +105,8 @@ export class RoomsComponent
     this.roomList = [...this.roomList, room];
   }
 }
+// pull the data architecture
+//getData ->addData ->getData
+
+// rxjs -- pull the data architecture
+//getData->continuous stream of data ->addData 
