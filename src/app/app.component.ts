@@ -1,7 +1,7 @@
-import { Component, ViewChild, ViewContainerRef, OnInit, AfterViewInit, ElementRef, Optional } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, OnInit, AfterViewInit, ElementRef, Optional, Inject } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
 import { LoggerService } from './logger.service';
-
+import {localStorageToken} from './localstorage.token';
 @Component({
   selector: 'hinv-root',
   templateUrl: './app.component.html',
@@ -20,10 +20,13 @@ export class AppComponent implements OnInit {
   
   ngOnInit(): void {
     this.loggerService?.log("AppComponent.ngOnInit()");
-    this.name.nativeElement.innerText = "Hilton Hotel"
+    this.name.nativeElement.innerText = "Hilton Hotel";
+    this.localStorage.setItem('name','Hiton Hotel');
+
   }
 
-  constructor(@Optional() private loggerService:LoggerService){
+  constructor(@Optional() private loggerService:LoggerService,
+  @Inject(localStorageToken) private localStorage:Storage){
 
   }
 }
