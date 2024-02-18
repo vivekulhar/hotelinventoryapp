@@ -106,7 +106,7 @@ export class RoomsComponent
 
   addRoom() {
     const room: RoomList = {
-      roomNumber: '4324',
+      // roomNumber: '4324',
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
       price: 500,
@@ -120,7 +120,10 @@ export class RoomsComponent
 
     // create a new instance here,
     // the property should be immutable
-    this.roomList = [...this.roomList, room];
+    // this.roomList = [...this.roomList, room];
+    this.roomsService.addRoom(room).subscribe((data)=>{
+      this.roomList = data;
+    });
   }
 }
 // pull the data architecture
