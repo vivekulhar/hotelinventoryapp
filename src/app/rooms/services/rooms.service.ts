@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RoomList } from '../rooms';
+
+// 
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +42,9 @@ export class RoomsService {
       rating: 3.4546,
     },
   ];
-  constructor() { }
+  constructor() {
+    console.log('Rooms service Initialised')
+   }
 
   getRooms(){
     return this.roomList;
