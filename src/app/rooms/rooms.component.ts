@@ -14,6 +14,7 @@ import { Room } from './rooms';
 import { RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
@@ -36,6 +37,14 @@ export class RoomsComponent
   };
   roomList: RoomList[] = [];
 
+  stream = new Observable(observer => {
+    observer.next('user1');
+    observer.next('user2');
+    observer.next('user3');
+    observer.complete();
+    // observer.error('error');
+  }
+);
   // we have created a new instance of HeaderComponent
   // and we can use it here
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
@@ -75,6 +84,15 @@ export class RoomsComponent
     this.roomsService.getRooms().subscribe(rooms=>{
       this.roomList=rooms;
     });
+    this.stream.subscribe((data)=>
+    {
+      console.log(data);
+    });
+    this.stream.subscribe({
+      next:(value)=>console.log(value),
+      complete:()=>console.log('complete'),
+      error:()=>console.log('error')
+    })
   }
 
   toggle() {
