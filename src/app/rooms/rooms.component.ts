@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
   QueryList,
+  SkipSelf,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -17,6 +18,7 @@ import { RoomsService } from './services/rooms.service';
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
+
 })
 export class RoomsComponent
   implements DoCheck, AfterViewChecked, AfterViewInit, OnDestroy, OnInit
@@ -45,7 +47,7 @@ export class RoomsComponent
   
   // shouldn't inject a component
   // keep services private
-  constructor(private roomsService:RoomsService) {
+  constructor(@SkipSelf() private roomsService:RoomsService) {
 
   }
   

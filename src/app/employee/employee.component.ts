@@ -6,7 +6,7 @@ import { RoomsService } from '../rooms/services/rooms.service';
   selector: 'hinv-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
-  // providers: [RoomsService]
+  providers: [RoomsService]
 })
 export class EmployeeComponent {
   empName:string='John';

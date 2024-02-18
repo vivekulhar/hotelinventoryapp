@@ -1,5 +1,6 @@
-import { Component, ViewChild, ViewContainerRef, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, OnInit, AfterViewInit, ElementRef, Optional } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
+import { LoggerService } from './logger.service';
 
 @Component({
   selector: 'hinv-root',
@@ -18,6 +19,11 @@ export class AppComponent implements OnInit {
   @ViewChild('name',{static:true}) name!:ElementRef;
   
   ngOnInit(): void {
+    this.loggerService?.log("AppComponent.ngOnInit()");
     this.name.nativeElement.innerText = "Hilton Hotel"
+  }
+
+  constructor(@Optional() private loggerService:LoggerService){
+
   }
 }
