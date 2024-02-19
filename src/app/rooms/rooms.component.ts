@@ -15,6 +15,7 @@ import { RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { Observable } from 'rxjs';
+import { HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
@@ -26,7 +27,7 @@ export class RoomsComponent
 {
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
-  hideRooms = false;
+  hideRooms = true;
   title = 'Room List';
   selectedRoom!: RoomList;
 
@@ -78,8 +79,30 @@ export class RoomsComponent
     console.log('on check is called');
   }
 
+  totalBytes = 0;
   ngOnInit(): void {
     // console.log(this.headerComponent);
+
+    this.roomsService.getPhotos().subscribe((event)=>{
+      switch(event.type){
+        case HttpEventType.Sent:{
+          console.log('Request has been made!');
+          break;
+        }
+        case HttpEventType.ResponseHeader:{
+          console.log('Request Success');
+          break;
+        }
+        case HttpEventType.DownloadProgress:{
+          this.totalBytes = event.loaded;
+          break;
+        }
+        case HttpEventType.Response:{
+          console.log(event.body);
+        }
+      }
+    })
+
 
     this.roomsService.getRooms().subscribe(rooms=>{
       this.roomList=rooms;
