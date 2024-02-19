@@ -3,6 +3,7 @@ import { Room, RoomList } from '../rooms';
 import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
 import { HttpClient, HttpRequest } from '@angular/common/http';
+import { shareReplay } from 'rxjs';
 // import {environment} from '../../../environments/environment'
 //
 @Injectable({
@@ -10,6 +11,15 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 })
 export class RoomsService {
   roomList: RoomList[] = [];
+  // we cannot burden the api after we have sub
+  //scribed to it, it can be modified inside a
+  // function called pipe
+  // $ denotes that this is a stream and you 
+  // dont need to call ngoninit on it
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms').
+  pipe(
+    shareReplay(1)
+  );
   constructor(
     @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
     private http: HttpClient

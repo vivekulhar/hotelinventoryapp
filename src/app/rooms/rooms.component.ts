@@ -104,7 +104,7 @@ export class RoomsComponent
     })
 
 
-    this.roomsService.getRooms().subscribe(rooms=>{
+    this.roomsService.getRooms$.subscribe(rooms=>{
       this.roomList=rooms;
     });
     this.stream.subscribe((data)=>
