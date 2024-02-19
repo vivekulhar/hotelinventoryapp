@@ -1,8 +1,10 @@
 <!-- <h1>Welcome to {{ hotelName }}</h1> -->
 <hinv-header></hinv-header>
-<hinv-header></hinv-header>
-<hinv-header></hinv-header>
+<!-- <hinv-header></hinv-header>
+<hinv-header></hinv-header> -->
 
+<!-- // use ansc pipe -->
+<!-- {{rooms$ | async |json }} -->
 <div [hidden]="hideRooms">
   Number of rooms:
   <!-- <div *ngIf="rooms.availableRooms > 0" 
@@ -32,9 +34,9 @@ an error if the property is null or undefined. -->
 <div>
   <button (click)="addRoom()">Add Room</button>
 </div>
-
-<div *ngIf="hideRooms">
-  <hinv-rooms-list [rooms]="roomList" [title]="title"
+<!-- avoid using async multiple times -->
+<div *ngIf="rooms$ | async as rooms">
+  <hinv-rooms-list [rooms]="rooms"  [title]="title"
   (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
  

@@ -14,7 +14,7 @@ import { Room } from './rooms';
 import { RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'hinv-rooms',
@@ -23,7 +23,7 @@ import { HttpEventType } from '@angular/common/http';
 
 })
 export class RoomsComponent
-  implements DoCheck, AfterViewChecked, AfterViewInit, OnDestroy, OnInit
+  implements OnDestroy,DoCheck, AfterViewChecked, AfterViewInit, OnDestroy, OnInit
 {
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
@@ -53,6 +53,13 @@ export class RoomsComponent
   @ViewChildren(HeaderComponent)
   headerChildrenComponent!: QueryList<HeaderComponent>;
 
+  error:string='';
+  totalBytes = 0;
+
+  subscription!:Subscription;
+
+  rooms$ = this.roomsService.getRooms$;
+
   //roomService= new RoomsService(); 
   
   // shouldn't inject a component
@@ -61,9 +68,9 @@ export class RoomsComponent
 
   }
   
-  ngOnDestroy(): void {
-    console.log('on destroy is called');
-  }
+  // ngOnDestroy(): void {
+  //   console.log('on destroy is called');
+  // }
   ngAfterViewChecked(): void {
     this.headerComponent.title = 'Rooms View';
   }
@@ -79,7 +86,7 @@ export class RoomsComponent
     console.log('on check is called');
   }
 
-  totalBytes = 0;
+
   ngOnInit(): void {
     // console.log(this.headerComponent);
 
@@ -104,9 +111,9 @@ export class RoomsComponent
     })
 
 
-    this.roomsService.getRooms$.subscribe(rooms=>{
-      this.roomList=rooms;
-    });
+    // this.subscription = this.roomsService.getRooms$.subscribe(rooms=>{
+    //   this.roomList=rooms;
+    // });
     this.stream.subscribe((data)=>
     {
       console.log(data);
@@ -171,6 +178,11 @@ export class RoomsComponent
     this.roomsService.delete('3').subscribe((data)=>{
       this.roomList=data;
     })
+  }
+  ngOnDestroy(){
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 }
 // pull the data architecture
