@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Room, RoomList } from '../rooms';
 import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { shareReplay } from 'rxjs';
 // import {environment} from '../../../environments/environment'
 //
@@ -16,7 +16,12 @@ export class RoomsService {
   // function called pipe
   // $ denotes that this is a stream and you 
   // dont need to call ngoninit on it
-  getRooms$ = this.http.get<RoomList[]>('/api/rooms').
+  headers = new HttpHeaders({
+    'token':'12345rgdfgdstr43'
+  })
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms',{
+    headers:this.headers
+  }).
   pipe(
     shareReplay(1)
   );
@@ -30,11 +35,15 @@ export class RoomsService {
   }
 
   getRooms() {
-    return this.http.get<RoomList[]>('/api/rooms');
+    
+    return this.http.get<RoomList[]>('/api/rooms',{
+    });
   }
 
   addRoom(room: RoomList) {
-    return this.http.post<RoomList[]>('/api/rooms', room);
+    return this.http.post<RoomList[]>('/api/rooms', room,{
+      headers:this.headers,
+    });
   }
 
   editRoom(room: RoomList) {
