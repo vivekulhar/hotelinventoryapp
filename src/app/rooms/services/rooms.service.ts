@@ -16,12 +16,10 @@ export class RoomsService {
   // function called pipe
   // $ denotes that this is a stream and you 
   // dont need to call ngoninit on it
-  headers = new HttpHeaders({
-    'token':'12345rgdfgdstr43'
-  })
-  getRooms$ = this.http.get<RoomList[]>('/api/rooms',{
-    headers:this.headers
-  }).
+  // headers = new HttpHeaders({
+  //   'token':'12345rgdfgdstr43'
+  // })
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms').
   pipe(
     shareReplay(1)
   );
@@ -41,9 +39,7 @@ export class RoomsService {
   }
 
   addRoom(room: RoomList) {
-    return this.http.post<RoomList[]>('/api/rooms', room,{
-      headers:this.headers,
-    });
+    return this.http.post<RoomList[]>('/api/rooms', room);
   }
 
   editRoom(room: RoomList) {
