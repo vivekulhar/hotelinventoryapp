@@ -26,7 +26,15 @@ export class RoomsAddComponent implements OnInit {
   AddRoom(roomsForm: NgForm) {
     this.roomsService.addRoom(this.room).subscribe((data) => {
       this.successMessage = 'Room Added Successfully';
-      roomsForm.reset();
+      roomsForm.resetForm({
+        roomType: '',
+        amenities: '',
+        checkinTime: new Date(),
+        checkoutTime: new Date(),
+        photos: '',
+        price: 0,
+        rating: 0,
+      });
     });
   }
 }
