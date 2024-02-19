@@ -16,7 +16,7 @@ export class RoomsService {
   // function called pipe
   // $ denotes that this is a stream and you 
   // dont need to call ngoninit on it
-  getRooms$ = this.http.get<RoomList[]>('/api/rooms').
+  getRooms$ = this.http.get<RoomList[]>('/api/room').
   pipe(
     shareReplay(1)
   );

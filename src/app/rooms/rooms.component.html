@@ -34,6 +34,10 @@ an error if the property is null or undefined. -->
 <div>
   <button (click)="addRoom()">Add Room</button>
 </div>
+<!-- subscribe to the error -->
+<h1>
+  {{getError$|async}}
+</h1>
 <!-- avoid using async multiple times -->
 <div *ngIf="rooms$ | async as rooms">
   <hinv-rooms-list [rooms]="rooms"  [title]="title"

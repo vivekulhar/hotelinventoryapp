@@ -14,8 +14,9 @@ import { Room } from './rooms';
 import { RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, catchError } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
+import {of, Subject} from 'rxjs';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
@@ -57,8 +58,18 @@ export class RoomsComponent
   totalBytes = 0;
 
   subscription!:Subscription;
+// subject is base class for streams
+  error$ = new Subject<string>();
 
-  rooms$ = this.roomsService.getRooms$;
+  getError$ = this.error$.asObservable();
+
+  rooms$ = this.roomsService.getRooms$.pipe(
+    catchError((err) => {
+      //console.log(err);
+      this.error$.next(err.message);
+      return of([]);
+    })
+  );
 
   //roomService= new RoomsService(); 
   
