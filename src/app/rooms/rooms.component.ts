@@ -14,7 +14,7 @@ import { Room } from './rooms';
 import { RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
-import { Observable, Subscription, catchError } from 'rxjs';
+import { Observable, Subscription, catchError, map } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import {of, Subject} from 'rxjs';
 @Component({
@@ -66,10 +66,16 @@ export class RoomsComponent
   rooms$ = this.roomsService.getRooms$.pipe(
     catchError((err) => {
       //console.log(err);
+      // dont write this in component
       this.error$.next(err.message);
       return of([]);
     })
   );
+
+  //modify the same stream
+  roomsCount$ = this.roomsService.getRooms$.pipe(
+    map((rooms) =>rooms.length)
+  )
 
   //roomService= new RoomsService(); 
   
