@@ -32,8 +32,10 @@ an error if the property is null or undefined. -->
 </div>
 
 <div>
-  <button (click)="addRoom()">Add Room</button>
+  <button routerLink="add">Add Room</button>
 </div>
+
+<router-outlet></router-outlet>
 <!-- subscribe to the error -->
 <h1>
   <!-- {{getError$|async}} -->
@@ -56,3 +58,4 @@ an error if the property is null or undefined. -->
 <h1>
   {{totalBytes}} loaded
 </h1>
+
