@@ -21,7 +21,7 @@ export class RoomsAddComponent implements OnInit {
   successMessage: string = '';
   constructor(private roomsService: RoomsService) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
   AddRoom(roomsForm: NgForm) {
     this.roomsService.addRoom(this.room).subscribe((data) => {
