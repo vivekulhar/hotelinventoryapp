@@ -28,6 +28,7 @@ import { HoverDirective } from './hover.directive';
 import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directive';
 // import { RoomsModule } from './rooms/rooms.module';
 import { HeaderModule } from './header/header.module';
+import { RouteConfigToken } from './services/routeConfig.service';
 
 function initFactory(initService:InitService){
   return () => initService.init();
@@ -76,6 +77,10 @@ function initFactory(initService:InitService){
       useFactory:initFactory,
       deps:[InitService],
       multi:true,
+    },
+    {
+      provide:RouteConfigToken,
+      useValue:{title:'Home'},
     }
   ],
   bootstrap: [AppComponent]

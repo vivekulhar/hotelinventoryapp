@@ -17,6 +17,7 @@ import { RoomsService } from './services/rooms.service';
 import { Observable, Subscription, catchError, map } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import {of, Subject} from 'rxjs';
+import { ConfigService } from '../services/config.service';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
@@ -81,7 +82,8 @@ export class RoomsComponent
   
   // shouldn't inject a component
   // keep services private
-  constructor(@SkipSelf() private roomsService:RoomsService) {
+  constructor(@SkipSelf() private roomsService:RoomsService,
+  private configService:ConfigService) {
 
   }
   
