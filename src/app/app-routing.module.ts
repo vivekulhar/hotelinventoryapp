@@ -8,13 +8,15 @@ import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+  { path: 'employee', component: EmployeeComponent },
+  { path: 'login', component: LoginComponent },
   {
-    path: 'employee',
-    component: EmployeeComponent,
+    path: 'rooms',
+    loadChildren: () =>
+      import('./rooms/rooms.module').then((m) => m.RoomsModule),
   },
-  {path:'login',component:LoginComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path:'**',component:NotfoundComponent},
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
