@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
   isLoggedIn:boolean=false;
+  isAdmin: boolean= false;
 
   constructor() { }
 
@@ -13,7 +14,14 @@ export class LoginService {
       // alert("Login Successful");
       // this.route.navigate(['/rooms','add']);
       this.isLoggedIn=true;
+      this.isAdmin=true;
+    } 
+    if(email === 'user@gmail.com' && password==="user"){
+      this.isLoggedIn=true;
+      this.isAdmin = false;
     }
+      
+
     return this.isLoggedIn;
   }
 }
