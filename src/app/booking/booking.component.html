@@ -114,51 +114,7 @@
     ></mat-datepicker-toggle>
     <mat-datepicker #bookingPicker></mat-datepicker>
   </mat-form-field>
-  <!-- <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="roomid"
-      placeholder="Room Id"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="roomid"
-      placeholder="Room Id"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="roomid"
-      placeholder="Room Id"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="roomid"
-      placeholder="Room Id"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="roomid"
-      placeholder="Room Id"
-    />
-  </mat-form-field> -->
+
   <div formGroupName="address">
     <!-- quardian control expansion control-->
     <mat-accordion class="example-headers-align" multi>
@@ -219,7 +175,47 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="addGuest()"
+    >
+      Add Guest
+    </button>
+  </div>
+  <div formArrayName="guests">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Guests </mat-panel-title>
+        </mat-expansion-panel-header>
+    <div *ngFor="let guest of guests.controls; let i = index">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            formControlName="guestName"
+            placeholder="Guest Name"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="number"
+            matInput
+            formControlName="age"
+            placeholder="Age"
+          />
+        </mat-form-field>
+      </div>
 
+      
+    </div>
+</mat-expansion-panel>
+</mat-accordion>
+  </div>
   <div>
     <button mat-raised-button color="primary">Submit</button>
   </div>
