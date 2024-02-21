@@ -35,7 +35,7 @@ export class BookingComponent implements OnInit {
         zipCode: [''],
       }),
       guests: this.fb.array([
-        this.fb.group({ guestName: [''], age: new FormControl('') }),
+        this.addGuestControl()
       ]),
     });
   }
@@ -47,7 +47,25 @@ export class BookingComponent implements OnInit {
 
   addGuest() {
     this.guests.push(
-      this.fb.group({ guestName: [''], age: new FormControl('') })
+      this.addGuestControl()
     );
+  }
+
+  addGuestControl(){
+    return this.fb.group({ guestName: [''], age: new FormControl('') });
+  }
+
+  addPassport(){
+    this.bookingForm.addControl('passport', new FormControl(''));
+  }
+
+  deletePassport(){
+    if(this.bookingForm.get('passport')){
+      this.bookingForm.removeControl('passport');
+    }
+  }
+
+  removeGuest(i:number){
+    this.guests.removeAt(i);
   }
 }
