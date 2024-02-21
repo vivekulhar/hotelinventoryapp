@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule),
     // canActivate:[loginGuard] },
-    canMatch:[()=> inject(LoginService).isLoggedIn]},
+    // canMatch:[()=> inject(LoginService).isLoggedIn]},
+},
   { path: '**', component: NotfoundComponent },
 ];
 
