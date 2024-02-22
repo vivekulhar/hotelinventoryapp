@@ -46,6 +46,8 @@ export class BookingComponent implements OnInit {
       guests: this.fb.array([this.addGuestControl()]),
       tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
     });
+
+    this.getBookingData();
   }
 
   addBooking() {
@@ -72,6 +74,52 @@ export class BookingComponent implements OnInit {
       guests: [],
       tnc: false,
     });
+  }
+
+  getBookingData(){
+    // we need to pass value for each and every control
+    // this.bookingForm.setValue({
+    //   roomId: '2',
+    //   guestEmail: 'test@gmail.com',
+    //   checkinDate: new Date('22-Feb-2024'),
+    //   checkoutDate: '',
+    //   bookingStatus: '',
+    //   bookingAmount: '',
+    //   bookingDate: '',
+    //   mobileNumber: '',
+    //   guestName: '',
+    //   address: {
+    //     addressLine1: '',
+    //     addressLine2: '',
+    //     city: '',
+    //     state: '',
+    //     country: '',
+    //     zipCode: '',
+    //   },
+    //   guests: [],
+    //   tnc: false,
+    // })
+    this.bookingForm.patchValue({
+      roomId: '2',
+      guestEmail: 'test@gmail.com',
+      checkinDate: new Date('22-Feb-2024'),
+      checkoutDate: '',
+      bookingStatus: '',
+      bookingAmount: '',
+      bookingDate: '',
+      mobileNumber: '',
+      guestName: '',
+      address: {
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        state: '',
+        country: '',
+        zipCode: '',
+      },
+      guests: [],
+      tnc: false,
+    })
   }
 
   addGuest() {
