@@ -29,43 +29,49 @@ export class BookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group(
-      {
-        roomId: new FormControl(
-          { value: '2', disabled: true },
-          { validators: [Validators.required] }
-        ),
-        guestEmail: [
-          '',
-          {
-            updateOn: 'blur',
-            validators: [Validators.required, Validators.email],
-          },
+    this.bookingForm = this.fb.group({
+      roomId: new FormControl(
+        { value: '2', disabled: true },
+        { validators: [Validators.required] }
+      ),
+      guestEmail: [
+        '',
+        {
+          updateOn: 'blur',
+          validators: [Validators.required, Validators.email],
+        },
+      ],
+      checkinDate: [''],
+      checkoutDate: [''],
+      bookingStatus: [''],
+      bookingAmount: [''],
+      bookingDate: [''],
+      mobileNumber: [
+        '',
+        {
+          updateOn: 'blur',
+        },
+      ],
+      guestName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          CustomValidator.ValidateName,
+          CustomValidator.ValidateSpecialChar('*')
         ],
-        checkinDate: [''],
-        checkoutDate: [''],
-        bookingStatus: [''],
-        bookingAmount: [''],
-        bookingDate: [''],
-        mobileNumber: [
-          '',
-          {
-            updateOn: 'blur',
-          },
-        ],
-        guestName: ['', [Validators.required, Validators.minLength(5), CustomValidator.ValidateName]],
-        address: this.fb.group({
-          addressLine1: ['', { validators: [Validators.required] }],
-          addressLine2: [''],
-          city: ['', { validators: [Validators.required] }],
-          state: ['', { validators: [Validators.required] }],
-          country: [''],
-          zipCode: [''],
-        }),
-        guests: this.fb.array([this.addGuestControl()]),
-        tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
-      }
-    );
+      ],
+      address: this.fb.group({
+        addressLine1: ['', { validators: [Validators.required] }],
+        addressLine2: [''],
+        city: ['', { validators: [Validators.required] }],
+        state: ['', { validators: [Validators.required] }],
+        country: [''],
+        zipCode: [''],
+      }),
+      guests: this.fb.array([this.addGuestControl()]),
+      tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
+    });
 
     this.getBookingData();
 
@@ -76,9 +82,9 @@ export class BookingComponent implements OnInit {
     //   })
     // });
 
-    this.bookingForm.valueChanges.pipe(
-      exhaustMap((data)=> this.bookingService.bookRoom(data))
-    ).subscribe((data)=> console.log(data));
+    this.bookingForm.valueChanges
+      .pipe(exhaustMap((data) => this.bookingService.bookRoom(data)))
+      .subscribe((data) => console.log(data));
   }
 
   addBooking() {
