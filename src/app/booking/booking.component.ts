@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { BookingService } from './booking.service';
-import { mergeMap, switchMap } from 'rxjs';
+import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 
 @Component({
   selector: 'hinv-booking',
@@ -76,7 +76,7 @@ export class BookingComponent implements OnInit {
     // });
 
     this.bookingForm.valueChanges.pipe(
-      switchMap((data)=> this.bookingService.bookRoom(data))
+      exhaustMap((data)=> this.bookingService.bookRoom(data))
     ).subscribe((data)=> console.log(data));
   }
 
