@@ -71,7 +71,7 @@ export class BookingComponent implements OnInit {
       }),
       guests: this.fb.array([this.addGuestControl()]),
       tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
-    });
+    }, {updateOn:'blur', validators:[CustomValidator.validatedate]});
 
     this.getBookingData();
 

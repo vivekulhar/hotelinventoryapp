@@ -131,6 +131,7 @@
       [for]="checkoutPicker"
     ></mat-datepicker-toggle>
     <mat-datepicker #checkoutPicker></mat-datepicker>
+    {{bookingForm.get('checkoutDate')?.errors | json}}
   </mat-form-field>
 
   <mat-form-field>
