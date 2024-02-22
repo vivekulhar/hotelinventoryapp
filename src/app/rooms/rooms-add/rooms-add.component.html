@@ -17,6 +17,7 @@
       name="roomType"
       [(ngModel)]="room.roomType"
       class="form-control"
+      [ngModelOptions]="{updateOn:'blur'}"
     />
   </div>
   <div class="form-group">
