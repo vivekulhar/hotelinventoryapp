@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { BookingService } from './booking.service';
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
+import { CustomValidator } from './ validators/CustomValidator';
 
 @Component({
   selector: 'hinv-booking',
@@ -52,7 +53,7 @@ export class BookingComponent implements OnInit {
             updateOn: 'blur',
           },
         ],
-        guestName: ['', [Validators.required, Validators.minLength(5)]],
+        guestName: ['', [Validators.required, Validators.minLength(5), CustomValidator.ValidateName]],
         address: this.fb.group({
           addressLine1: ['', { validators: [Validators.required] }],
           addressLine2: [''],

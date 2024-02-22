@@ -9,6 +9,8 @@ import { RoomsComponent } from './rooms.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderModule } from '../header/header.module';
 import { RouteConfigToken } from '../services/routeConfig.service';
+import { BookingComponent } from '../booking/booking.component';
+import { BookingModule } from '../booking/booking.module';
 
 
 @NgModule({
@@ -17,12 +19,14 @@ import { RouteConfigToken } from '../services/routeConfig.service';
     RoomsListComponent,
     RoomsBookingComponent,
     RoomsAddComponent,
+
   ],
   imports: [
     CommonModule,
     RoomsRoutingModule,
     FormsModule,
     HeaderModule,
+    
   ],
   providers: [
     {

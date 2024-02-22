@@ -4,6 +4,7 @@ import { RoomsAddComponent } from './rooms-add/rooms-add.component';
 import { RoomsBookingComponent } from './rooms-booking/rooms-booking.component';
 import { RoomsComponent } from './rooms.component';
 import { RoomGuard } from './guards/room.guard';
+import { BookingComponent } from '../booking/booking.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
       { path: ':roomid', component: RoomsBookingComponent },
     ],
   },
+  {
+    path:'booking',
+    component:BookingComponent
+  }
 ];
 //put add first than :roomid
 
