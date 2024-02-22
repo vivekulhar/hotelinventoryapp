@@ -3,12 +3,22 @@
 {{ bookingForm.pristine | json }}
 {{ bookingForm.dirty | json }}
 <div>
-  <button mat-raised-button color="primary" type="button" (click)="addPassport()" >
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="addPassport()"
+  >
     Add Passport
   </button>
 </div>
 <div>
-  <button mat-raised-button color="primary" type="button" (click)="deletePassport()" >
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="deletePassport()"
+  >
     Delete Passport
   </button>
 </div>
@@ -21,7 +31,7 @@
       formControlName="passport"
       placeholder="Passport Number"
     />
-    </mat-form-field>
+  </mat-form-field>
 
   <mat-form-field>
     <mat-label>Room Id</mat-label>
@@ -47,6 +57,10 @@
       formControlName="guestName"
       placeholder="Guest Name"
     />
+    {{bookingForm.get('guestName')?.errors}}
+    <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')"> 
+      Guest Name should be minimum 5 characters!
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Provide an Email</mat-label>
@@ -150,6 +164,9 @@
             formControlName="addressLine1"
             placeholder="Address Line 1"
           />
+          <mat-error *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')"> 
+            Address line 1 is requireed
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -220,6 +237,9 @@
                 formControlName="guestName"
                 placeholder="Guest Name"
               />
+              <mat-error *ngIf="bookingForm.get(['guests',i, 'guestName'])?.hasError('required')"> 
+                Guest Name is required
+              </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input
@@ -231,21 +251,27 @@
             </mat-form-field>
           </div>
           <div>
-            <button 
-            mat-raised-button
-            color="primary"
-            type="button"
-            (click)="removeGuest(i)">
-          Remove Guest</button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              (click)="removeGuest(i)"
+            >
+              Remove Guest
+            </button>
           </div>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
   <div>
-    <mat-checkbox class="example-margin" formControlName="tnc">Checked</mat-checkbox>
+    <mat-checkbox class="example-margin" formControlName="tnc"
+      >Checked</mat-checkbox
+    >
   </div>
   <div>
-    <button [disabled]="bookingForm.invalid" mat-raised-button color="primary">Submit</button>
+    <button [disabled]="bookingForm.invalid" mat-raised-button color="primary">
+      Submit
+    </button>
   </div>
 </form>
