@@ -27,13 +27,24 @@ export class BookingComponent implements OnInit {
         { value: '2', disabled: true },
         { validators: [Validators.required] }
       ),
-      guestEmail: ['', [Validators.required, Validators.email]],
+      guestEmail: [
+        '',
+        {
+          updateOn: 'blur',
+          validators: [Validators.required, Validators.email],
+        },
+      ],
       checkinDate: [''],
       checkoutDate: [''],
       bookingStatus: [''],
       bookingAmount: [''],
       bookingDate: [''],
-      mobileNumber: [''],
+      mobileNumber: [
+        '',
+        {
+          updateOn: 'blur',
+        },
+      ],
       guestName: ['', [Validators.required, Validators.minLength(5)]],
       address: this.fb.group({
         addressLine1: ['', { validators: [Validators.required] }],
@@ -45,9 +56,15 @@ export class BookingComponent implements OnInit {
       }),
       guests: this.fb.array([this.addGuestControl()]),
       tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
+    }, {
+      updateOn:'blur',
     });
 
     this.getBookingData();
+
+    this.bookingForm.valueChanges.subscribe((data) => {
+      console.log(data);
+    });
   }
 
   addBooking() {
@@ -76,7 +93,7 @@ export class BookingComponent implements OnInit {
     });
   }
 
-  getBookingData(){
+  getBookingData() {
     // we need to pass value for each and every control
     // this.bookingForm.setValue({
     //   roomId: '2',
@@ -119,7 +136,7 @@ export class BookingComponent implements OnInit {
       },
       guests: [],
       tnc: false,
-    })
+    });
   }
 
   addGuest() {
