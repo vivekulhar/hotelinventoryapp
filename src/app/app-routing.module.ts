@@ -10,23 +10,28 @@ import { loginGuard } from './guards/login.guard';
 import { LoginService } from './login/login.service';
 
 const routes: Routes = [
-  { path: 'employee', component: EmployeeComponent, 
-  // canActivate:[loginGuard] 
-  canMatch:[()=> inject(LoginService).isLoggedIn],
+  {
+    path: 'employee',
+    component: EmployeeComponent,
+    // canActivate:[loginGuard]
+    canMatch: [() => inject(LoginService).isLoggedIn],
   },
   { path: 'login', component: LoginComponent },
   {
     path: 'rooms',
     loadChildren: () =>
       import('./rooms/rooms.module').then((m) => m.RoomsModule),
-      // canActivate:[loginGuard]
-      canMatch:[()=> inject(LoginService).isLoggedIn],
+    // canActivate:[loginGuard]
+    canMatch: [() => inject(LoginService).isLoggedIn],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule),
+  {
+    path: 'booking/:roomid',
+    loadChildren: () =>
+      import('./booking/booking.module').then((m) => m.BookingModule),
     // canActivate:[loginGuard] },
     // canMatch:[()=> inject(LoginService).isLoggedIn]},
-},
+  },
   { path: '**', component: NotfoundComponent },
 ];
 

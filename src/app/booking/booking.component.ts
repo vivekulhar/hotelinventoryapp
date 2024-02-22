@@ -10,6 +10,7 @@ import {
 import { BookingService } from './booking.service';
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 import { CustomValidator } from './ validators/CustomValidator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'hinv-booking',
@@ -25,13 +26,15 @@ export class BookingComponent implements OnInit {
   constructor(
     private configService: ConfigService,
     private fb: FormBuilder,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private route:ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    const roomId = this.route.snapshot.paramMap.get('roomid');
     this.bookingForm = this.fb.group({
       roomId: new FormControl(
-        { value: '2', disabled: true },
+        { value: roomId, disabled: true },
         { validators: [Validators.required] }
       ),
       guestEmail: [
@@ -142,7 +145,7 @@ export class BookingComponent implements OnInit {
     //   tnc: false,
     // })
     this.bookingForm.patchValue({
-      roomId: '2',
+      // roomId: '2',
       guestEmail: 'test@gmail.com',
       checkinDate: new Date('22-Feb-2024'),
       checkoutDate: '',
