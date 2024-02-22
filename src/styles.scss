@@ -5,7 +5,7 @@
 
 /* Importing Datepicker SCSS file. */
 // @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
-
+@import '~bootstrap/dist/css/bootstrap.min.css';
 .even{
     background-color: steelblue;
     color:white;

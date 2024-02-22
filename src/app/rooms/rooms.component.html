@@ -1,46 +1,46 @@
 <!-- <h1>Welcome to {{ hotelName }}</h1> -->
-<hinv-header></hinv-header>
+<!-- <hinv-header></hinv-header> -->
 <!-- <hinv-header></hinv-header>
 <hinv-header></hinv-header> -->
 
 <!-- // use ansc pipe -->
 <!-- {{rooms$ | async |json }} -->
-<div [hidden]="hideRooms">
-  Number of rooms:
+<!-- <div [hidden]="hideRooms">
+  Number of rooms: -->
   <!-- <div *ngIf="rooms.availableRooms > 0" 
     [ngStyle]="{color:'green'}"
     [innerText]="numberOfRooms"></div>
 </div> -->
-  <div
+  <!-- <div
     [ngStyle]="{ color: rooms.availableRooms ? 'green' : 'red' }"
     [innerText]="numberOfRooms"
   ></div>
-</div>
+</div> -->
 <!-- Property Binding -->
 <!-- null collision operator ?? -->
 <!-- optional chaining ?. allows to access
 properties of an object without causing
 an error if the property is null or undefined. -->
-{{ rooms?.availableRooms ?? "No rooms" }}
+<!-- {{ rooms?.availableRooms ?? "No rooms" }} -->
 
 <!-- json pipe-->
 <!-- {{roomList | json}} -->
 
-<div *ngIf="selectedRoom">
+<!-- <div *ngIf="selectedRoom">
     {{selectedRoom|json}}
 
-</div>
+</div> -->
 
 <div>
-  <button routerLink="add">Add Room</button>
+  <button class="btn btn-success" routerLink="add">Add Room</button>
 </div>
 
 <router-outlet></router-outlet>
 <!-- subscribe to the error -->
-<h1>
+<!-- <h1> -->
   <!-- {{getError$|async}} -->
-  Number of Rooms: {{roomsCount$|async}}
-</h1>
+  <!-- Number of Rooms: {{roomsCount$|async}} -->
+<!-- </h1> -->
 <!-- avoid using async multiple times -->
 <div *ngIf="rooms$ | async as rooms">
   <hinv-rooms-list [rooms]="rooms"  [title]="title"
@@ -50,11 +50,11 @@ an error if the property is null or undefined. -->
 <!-- document.getElementById('numberOfRooms').innerText = numberOfRooms; -->
 
 <!-- <button click=""fnName() -->
-<button (click)="toggle()">Toggle</button>
+<!-- <button (click)="toggle()">Toggle</button>
 <button (click)="editRoom()">Edit Room</button>
 <button (click)="deleteRoom()">Delete Room</button>
 
 <h1>
   {{totalBytes}} loaded
-</h1>
+</h1> -->
 
