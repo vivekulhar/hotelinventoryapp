@@ -1,4 +1,4 @@
-<h2>{{title}}</h2>
+<h2>{{ title }}</h2>
 <table class="table">
   <tr>
     <th>Index</th>
@@ -16,7 +16,7 @@
   <tr
     [ngClass]="e ? 'even' : 'odd'"
     *ngFor="
-      let room of rooms;
+      let room of rooms | filter : price;
       let i = index;
       let e = even;
       let o = odd
@@ -34,7 +34,12 @@
       <!-- <button class="btn btn-primary"
       (click)="selectRoom(room)">Select</button> -->
       <!-- / means routing should start from here -->
-      <button class="btn btn-primary" [routerLink]="['/booking', room.roomNumber]">Book Room</button>
+      <button
+        class="btn btn-primary"
+        [routerLink]="['/booking', room.roomNumber]"
+      >
+        Book Room
+      </button>
     </td>
   </tr>
 </table>

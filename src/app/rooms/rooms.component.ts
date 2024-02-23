@@ -18,6 +18,7 @@ import { Observable, Subscription, catchError, map } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import {of, Subject} from 'rxjs';
 import { ConfigService } from '../services/config.service';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
@@ -72,6 +73,8 @@ export class RoomsComponent
       return of([]);
     })
   );
+
+    priceFilter = new FormControl(0);
 
   //modify the same stream
   roomsCount$ = this.roomsService.getRooms$.pipe(

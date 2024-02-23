@@ -42,8 +42,13 @@ an error if the property is null or undefined. -->
   <!-- Number of Rooms: {{roomsCount$|async}} -->
 <!-- </h1> -->
 <!-- avoid using async multiple times -->
+{{priceFilter | json}}
+<div>
+  <input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter" >
+</div>
+
 <div *ngIf="rooms$ | async as rooms">
-  <hinv-rooms-list [rooms]="rooms"  [title]="title"
+  <hinv-rooms-list [rooms]="rooms" [price]="priceFilter.value ?? 0" [title]="title"
   (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
 

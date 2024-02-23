@@ -23,6 +23,8 @@ export class RoomsListComponent implements OnChanges, OnDestroy{
   // }
   // to get the data
   @Input() rooms:RoomList[] | null=[];
+
+  @Input() price = 0;
   // <> kind of data we want to send back
   @Output() selectedRoom = new EventEmitter<RoomList>();
   @Input() title:string='';
