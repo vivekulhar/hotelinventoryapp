@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login/login.service';
 import { inject } from '@angular/core';
 
-export const RoomGuard: CanActivateChildFn = (
+export const roomGuard: CanActivateChildFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ):

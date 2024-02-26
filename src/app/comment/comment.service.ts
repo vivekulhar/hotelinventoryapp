@@ -10,7 +10,7 @@ export class CommentService {
   constructor(private http:HttpClient) { }
 
   getComments(){
-    return this.http.get<Comments[]>('https://fdjsonplaceholder.typicode.com/comments');
+    return this.http.get<Comments[]>('https://jsonplaceholder.typicode.com/comments');
 
   }
 }

@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +30,8 @@ import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directi
 import { HeaderModule } from './header/header.module';
 import { RouteConfigToken } from './services/routeConfig.service';
 import { GlobalErrorHandler } from './errorhandler.service';
+import { ConfigService } from './services/config.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 function initFactory(initService:InitService){
   return () => initService.init();
@@ -47,6 +49,7 @@ function initFactory(initService:InitService){
     LoginComponent,
     HoverDirective,
     EmailvalidatorDirective,
+    
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,7 @@ function initFactory(initService:InitService){
     MatIconModule,
     MatListModule,
     FormsModule,
-    HeaderModule,
+    HeaderModule
   ],
   providers: [
     {
@@ -85,7 +88,7 @@ function initFactory(initService:InitService){
     {
       provide:ErrorHandler,
       useClass:GlobalErrorHandler
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })
