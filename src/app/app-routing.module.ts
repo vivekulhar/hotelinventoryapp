@@ -32,6 +32,7 @@ const routes: Routes = [
     // canActivate:[loginGuard] },
     // canMatch:[()=> inject(LoginService).isLoggedIn]},
   },
+  { path: 'comment', loadChildren: () => import('./comment/comment.module').then(m => m.CommentModule) },
   { path: '**', component: NotfoundComponent },
 ];
 
